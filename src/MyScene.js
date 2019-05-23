@@ -19,7 +19,7 @@ class MyScene extends CGFscene {
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
     this.enableTextures(true);
-    this.setUpdatePeriod(50);
+    this.setUpdatePeriod(60);
 
     // Initialize scene objects
     this.axis = new CGFaxis(this);
@@ -64,7 +64,9 @@ class MyScene extends CGFscene {
     this.terrainShader.setUniformsValues({uSampler2: 1});
   }
 
-  update(t) {}
+  update(t) {
+    this.bird.update(t);
+  }
 
   display() {
     // ---- BEGIN Background, camera and axis setup
