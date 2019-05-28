@@ -30,6 +30,32 @@ class MyScene extends CGFscene {
 
     // Objects connected to MyInterface
   }
+
+  checkKeys() {
+    let text = 'Keys pressed: ';
+    let keysPressed = false;
+
+    // Check for key codes e.g. in https://keycode.info/
+    if (this.gui.isKeyPressed('KeyW')) {
+      text += ' W ';
+      keysPressed = true;
+      this.bird.y += 1;
+      this.bird.speed += 100;
+    }
+
+    if (this.gui.isKeyPressed('KeyS')) {
+      text += ' S ';
+      keysPressed = true;
+      this.bird.y -= 1;
+      this.bird.speed += 100;
+    }
+
+    if (keysPressed) {
+      console.log(text);
+    }
+  }
+
+
   initLights() {
     this.lights[0].setPosition(15, 2, 5, 1);
     this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -66,6 +92,7 @@ class MyScene extends CGFscene {
 
   update(t) {
     this.bird.update(t);
+    this.checkKeys();
   }
 
   display() {
@@ -96,7 +123,7 @@ class MyScene extends CGFscene {
 
     this.rotate(-0.5 * Math.PI, 1, 0, 0);
     this.scale(60, 60, 1);
-    this.plane.display();
+    // this.plane.display();
     this.popMatrix();
 
     this.bird.display();
