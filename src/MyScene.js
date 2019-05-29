@@ -21,10 +21,50 @@ class MyScene extends CGFscene {
     this.enableTextures(true);
     this.setUpdatePeriod(60);
 
+    // Initialize LSystem objects
+    this.axiom = 'X';
+    this.ruleF = 'FF';
+    this.ruleX = 'F[-X][X]F[-X]+FX';
+    this.angle = 25.0;
+    this.iterations = 3;
+    this.scaleFactor = 0.5;
+
     // Initialize scene objects
     this.axis = new CGFaxis(this);
     this.plane = new Plane(this, 32);
     this.bird = new MyBird(this);
+    this.lightning = new MyLightning(this);
+
+    this.rulesX = [];
+    this.rulesX.push('F-FF+[+F-F-F+X]-[-F+F+F-X-X+F+F]');
+    this.rulesX.push('F-X+[+F-F-F+X]-[-F+F+F-X-X+F+F]');
+    this.rulesX.push('FF+X+[+F-F-F+X]');
+    this.rulesX.push('F+F+[+F-F-F+X+X]');
+    this.rulesX.push('F+X-[+F-F-F+X+X]');
+
+
+    // this.rulesX.push('FF+[+F-F-F]-[-F+F+F]');
+    /*
+    this.rulesX.push('F[-X][X]F[-X]+X');
+    this.rulesX.push('F[-X][x]+X');
+    this.rulesX.push('F[+X]-X');
+    this.rulesX.push('F[/X][X]F[\\X]+X');
+    this.rulesX.push('F[\X][X]/X');
+    this.rulesX.push('F[/X]\X');
+    this.rulesX.push('F[^X][X]F[&X]^X');
+    this.rulesX.push('F[^X]&X');
+    this.rulesX.push('F[&X]^X');
+    */
+
+    this.doGenerate =
+        function() {
+      this.lightning.generate(
+          this.axiom, {'F': [this.ruleF], 'X': this.rulesX}, this.angle,
+          this.iterations, this.scaleFactor);
+    }
+
+        // do initial generation
+        this.doGenerate();
 
     this.initMatsTextures();
 
@@ -96,10 +136,11 @@ class MyScene extends CGFscene {
 
     this.rotate(-0.5 * Math.PI, 1, 0, 0);
     this.scale(60, 60, 1);
-    this.plane.display();
+    // this.plane.display();
     this.popMatrix();
 
-    this.bird.display();
+    // this.bird.display();
+    this.lightning.display();
 
     // ---- END Primitive drawing section
   }
