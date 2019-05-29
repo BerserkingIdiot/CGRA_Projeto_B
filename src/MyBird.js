@@ -4,31 +4,42 @@ class MyBird extends CGFobject {
     this.cube = new MyUnitCube(scene);
     this.wing = new MyDiamond(scene);
     this.x = 0;
-    this.y = 1;
+    this.y = 3;
     this.z = 0;
     this.wingAngle = 0;
     this.orientation = 0;  // Angle around yy axis
     this.speed = 0;        // Movement speed
+    this.maxSpeed = 20;
     this.acceleration = 0;
   }
 
-  turn(v) {}
+  turn(v) {
+    if (this.orientation * Math.PI / 180 > 2 * Math.PI) {
+      this.orientation = 0;
+    }
+    this.orientation += 1;
+  }
 
-  accelerate(v) {}
+  accelerate(v) {
+    this.speed += v;
+  }
 
   update(t) {
     this.y += Math.sin(t / 100 % 500);
     this.wingAngle = Math.PI / 8 * Math.sin(t / 100 % 500);
+    this.x += Math.cos(this.orientation * Math.PI / 180) * this.speed;
+    this.z += Math.sin(this.orientation * Math.PI / 180) * this.speed;
+    this.acceleration -= 1000;
   }
 
   display(scene) {
     this.scene.pushMatrix();
 
-    this.scene.translate(0, this.y, 0);
+    this.scene.translate(this.x, this.y, this.z);
 
     // Body
     this.scene.pushMatrix();
-    this.scene.translate(0, 3, 0);
+    this.scene.translate(this.x, this.y, this.z);
     this.scene.scale(1, 1, 1);
     this.cube.display();
     this.scene.popMatrix();
@@ -36,7 +47,8 @@ class MyBird extends CGFobject {
 
     // Wing 1
     this.scene.pushMatrix();
-    this.scene.translate(-0.65, 3, 0);
+    this.scene.translate(this.x, this.y, this.z);
+    this.scene.translate(-0.65, 0, 0);
     this.scene.rotate(this.wingAngle, 0, 0, 1);
     this.scene.translate(-0.35, 0, 0);
     this.scene.rotate(-Math.PI / 2, 1, 0, 0);
@@ -47,7 +59,8 @@ class MyBird extends CGFobject {
     //=========
     // Wing 2
     this.scene.pushMatrix();
-    this.scene.translate(0.65, 3, 0);
+    this.scene.translate(this.x, this.y, this.z);
+    this.scene.translate(0.65, 0, 0);
     this.scene.rotate(-this.wingAngle, 0, 0, 1);
     this.scene.translate(0.35, 0, 0);
     this.scene.rotate(-Math.PI / 2, 1, 0, 0);
