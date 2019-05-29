@@ -44,7 +44,6 @@ class MyLSystem extends CGFobject {
     this.iterate()
   }
 
-
   // desenvolve o axioma ao longo de uma sequência de desenvolvimento com um
   // determinado número de iterações
   iterate() {
