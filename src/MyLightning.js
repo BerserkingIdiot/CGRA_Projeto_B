@@ -10,12 +10,14 @@ class MyLightning extends MyLSystem {
   }
 
   startAnimation(t) {
-    this.initialTime = t;
-    this.depth = 3;
     this.iterate();
+    this.initialTime = t;
+    this.depth = this.axiom.length;
   }
 
-  update() {}
+  update(t) {
+    this.depth += t - this.initialTime;
+  }
 
   display() {
     this.scene.pushMatrix();

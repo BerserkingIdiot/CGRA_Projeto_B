@@ -106,6 +106,7 @@ class MyScene extends CGFscene {
 
   update(t) {
     this.bird.update(t);
+    this.lightning.update(t);
   }
 
   display() {
@@ -140,7 +141,7 @@ class MyScene extends CGFscene {
     this.popMatrix();
 
     // this.bird.display();
-    this.lightning.display();
+    this.lightning.startAnimation();
 
     // ---- END Primitive drawing section
   }
