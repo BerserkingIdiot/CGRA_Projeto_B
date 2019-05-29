@@ -19,6 +19,10 @@ class MyScene extends CGFscene {
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
     this.enableTextures(true);
+
+    this.speedFactor = 1;
+    this.scaleFactor = 1;
+
     this.setUpdatePeriod(60);
 
     // Initialize scene objects
@@ -58,6 +62,12 @@ class MyScene extends CGFscene {
       text += ' D ';
       keysPressed = true;
       this.bird.turn(-3);
+    }
+
+    if(this.gui.isKeyPressed('KeyR')) {
+        text += ' R ';
+        keysPressed = true;
+        this.bird.reset();
     }
 
     if (keysPressed) {
@@ -103,6 +113,14 @@ class MyScene extends CGFscene {
   update(t) {
     this.bird.update(t);
     this.checkKeys();
+  }
+
+  onSpeedFactorChanged(){
+      this.bird.updateSpeedFactor(this.speedFactor);
+  }
+
+  onScaleFactorChanged(){
+      this.bird.updateScaleFactor(this.scaleFactor);
   }
 
   display() {

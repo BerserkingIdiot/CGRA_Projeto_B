@@ -10,14 +10,16 @@ class MyBird extends CGFobject {
     this.orientation = 0;  // Angle around yy axis
     this.speed = 0;        // Movement speed
     this.maxSpeed = 20;
-    this.acceleration = 0;
+    this.speedFactor = 1;
+    this.scaleFactor = 1;
+    //this.acceleration = 0;
   }
 
   turn(v) {
     if (this.orientation * Math.PI / 180 > 2 * Math.PI) {
       this.orientation = 0;
     }
-    this.orientation += v;
+    this.orientation += v * this.speedFactor;
   }
 
   accelerate(v) {
@@ -26,12 +28,27 @@ class MyBird extends CGFobject {
       this.speed = 0;
   }
 
+  reset() {
+    this.x = 0;
+    this.z = 0;
+    this.orientation = 0;
+    this.speed = 0;
+  }
+
+  updateSpeedFactor(factor) {
+    this.speedFactor = factor;
+  }
+
+  updateScaleFactor(factor) {
+    this.scaleFactor = factor;
+  }
+
   update(t) {
-    this.y = 3 + Math.sin(t / 100 % 500) * 0.5;
-    this.wingAngle = Math.PI / 8 * Math.sin(t / 100 % 500);
-    this.x += Math.sin(this.orientation * Math.PI / 180) * this.speed;
-    this.z += Math.cos(this.orientation * Math.PI / 180) * this.speed;
-    this.acceleration -= 1000;
+    this.y = 3 + Math.sin(t / 100 * this.speedFactor % 500) * 0.5;
+    this.wingAngle = Math.PI / 8 * Math.sin(t / 100 * this.speedFactor % 500);
+    this.x += Math.sin(this.orientation * Math.PI / 180) * this.speed * this.speedFactor;
+    this.z += Math.cos(this.orientation * Math.PI / 180) * this.speed * this.speedFactor;
+    //this.acceleration -= 1000;
   }
 
   display(scene) {
@@ -39,6 +56,7 @@ class MyBird extends CGFobject {
 
     this.scene.translate(this.x, this.y, this.z);
     this.scene.rotate(this.orientation * Math.PI / 180, 0,1,0);
+    this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
     // Body
     this.scene.pushMatrix();

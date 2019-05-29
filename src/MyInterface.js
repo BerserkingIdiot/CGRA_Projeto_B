@@ -41,6 +41,9 @@ class MyInterface extends CGFinterface {
     // http://workshop.chromeexperiments.com/examples/gui
     this.gui = new dat.GUI();
 
+    this.gui.add(this.scene, 'speedFactor', 0.1, 3).onChange(this.scene.onSpeedFactorChanged.bind(this.scene));
+    this.gui.add(this.scene, 'scaleFactor', 0.5, 3).onChange(this.scene.onScaleFactorChanged.bind(this.scene));
+
     var obj = this;
 
     this.initKeys();
