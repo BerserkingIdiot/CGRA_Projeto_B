@@ -48,7 +48,6 @@ class MyLSystem extends CGFobject {
   // determinado número de iterações
   iterate() {
     var i, j;
-    this.axiom = 'X';
     console.log(this.axiom.length);
     for (i = 0; i < this.iterations; ++i) {
       var newString = '';

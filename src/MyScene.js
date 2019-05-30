@@ -25,13 +25,6 @@ class MyScene extends CGFscene {
 
     this.setUpdatePeriod(60);
 
-    // Initialize LSystem objects
-    this.axiom = 'X';
-    this.ruleF = 'FF';
-    this.ruleX = 'F[-X][X]F[-X]+FX';
-    this.angle = 25.0;
-    this.iterations = 1;
-    this.scaleFactor = 0.5;
 
     // Initialize scene objects
     this.axis = new CGFaxis(this);
@@ -60,15 +53,10 @@ class MyScene extends CGFscene {
     this.rulesX.push('F[&X]^X');
     */
 
-    this.doGenerate =
-        function() {
-      this.lightning.generate(
-          this.axiom, {'F': [this.ruleF], 'X': this.rulesX}, this.angle,
-          this.iterations, this.scaleFactor);
-    }
 
-        // do initial generation
-        this.doGenerate();
+
+    // do initial generation
+
 
 
     // Objects connected to MyInterface
