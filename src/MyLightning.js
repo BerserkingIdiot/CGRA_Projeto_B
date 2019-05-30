@@ -4,6 +4,12 @@ class MyLightning extends MyLSystem {
     this.initialTime = 0;
     this.depth = 0;
     this.printLightning = false;
+
+    this.material = new CGFappearance(this.scene);
+    this.material.setAmbient(1, 1, 1, 1);
+    this.material.setDiffuse(1, 1, 1, 1);
+    this.material.setSpecular(0, 0, 0, 1);
+    this.material.setShininess(100);
   }
 
   initGrammar() {
@@ -26,6 +32,7 @@ class MyLightning extends MyLSystem {
 
   display() {
     this.scene.pushMatrix();
+    this.material.apply();
     this.scene.scale(this.scale, this.scale, this.scale);
     this.scene.translate(1, 30, 1);
     this.scene.rotate(Math.PI, 0, 0, 1);
