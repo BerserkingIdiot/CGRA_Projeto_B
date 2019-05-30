@@ -1,8 +1,9 @@
 class MyLightning extends MyLSystem {
   constructor(scene) {
     super(scene);
-    this.initialTime;
-    this.depth;
+    this.initialTime = 0;
+    this.depth = 0;
+    this.printLightning = false;
   }
 
   initGrammar() {
@@ -13,15 +14,21 @@ class MyLightning extends MyLSystem {
     this.iterate();
     this.initialTime = t;
     this.depth = 0;
+    this.printLightning = true;
   }
 
   update(t) {
-    this.depth += t - this.initialTime;
+    console.log('Depth: ' + this.depth);
+    console.log('t: ' + t);
+    console.log('Initial time: ' + this.initialTime);
+    this.depth = (t - this.initialTime) / 100;
   }
 
   display() {
     this.scene.pushMatrix();
     this.scene.scale(this.scale, this.scale, this.scale);
+    this.scene.translate(1, 30, 1);
+    this.scene.rotate(Math.PI, 0, 0, 1);
 
     let i;
 
@@ -59,13 +66,16 @@ class MyLightning extends MyLSystem {
         // processa primitiva definida na gramatica, se existir
         default:
           let primitive = this.grammar[this.axiom[i]];
-
-          if (primitive && i < this.depth) {
+          if (primitive && i < this.depth && this.printLightning) {
             primitive.display();
             this.scene.translate(0, 1, 0);
+          } else if (this.depth > 10) {
+            console.log('oi');
+            this.printLightning = false;
           }
           break;
       }
     }
+    this.scene.popMatrix();
   }
 }

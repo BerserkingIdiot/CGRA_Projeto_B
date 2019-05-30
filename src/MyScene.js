@@ -30,7 +30,7 @@ class MyScene extends CGFscene {
     this.ruleF = 'FF';
     this.ruleX = 'F[-X][X]F[-X]+FX';
     this.angle = 25.0;
-    this.iterations = 3;
+    this.iterations = 1;
     this.scaleFactor = 0.5;
 
     // Initialize scene objects
@@ -83,7 +83,7 @@ class MyScene extends CGFscene {
     }
   }
 
-  checkKeys() {
+  checkKeys(t) {
     let text = 'Keys pressed: ';
     let keysPressed = false;
 
@@ -118,6 +118,12 @@ class MyScene extends CGFscene {
       this.bird.reset();
     }
 
+    if (this.gui.isKeyPressed('KeyL')) {
+      text += ' L ';
+      keysPressed = true;
+      this.lightning.startAnimation(t);
+    }
+
     if (keysPressed) {
       console.log(text);
     }
@@ -145,8 +151,8 @@ class MyScene extends CGFscene {
 
   update(t) {
     this.bird.update(t);
-    // this.lightning.update(t);
-    this.checkKeys();
+    this.lightning.update(t);
+    this.checkKeys(t);
   }
 
   onSpeedFactorChanged() {
@@ -179,7 +185,8 @@ class MyScene extends CGFscene {
     this.terrain.display(this.selectedShader);
 
     this.bird.display();
-    // this.lightning.startAnimation();
+
+    this.lightning.display();
 
     // ---- END Primitive drawing section
   }

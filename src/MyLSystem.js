@@ -41,13 +41,15 @@ class MyLSystem extends CGFobject {
     this.scale = Math.pow(_scale, this.iterations - 1);
 
     // desenvolve a sequencia de desenvolvimento do Sistema L
-    this.iterate()
+    this.iterate();
   }
 
   // desenvolve o axioma ao longo de uma sequência de desenvolvimento com um
   // determinado número de iterações
   iterate() {
     var i, j;
+    this.axiom = 'X';
+    console.log(this.axiom.length);
     for (i = 0; i < this.iterations; ++i) {
       var newString = '';
 
