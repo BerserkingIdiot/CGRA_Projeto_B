@@ -32,12 +32,6 @@ class MyScene extends CGFscene {
     this.bird = new MyBird(this);
     this.lightning = new MyLightning(this);
 
-    this.rulesX = [];
-    this.rulesX.push('F-FF+[+F-F-F+X]-[-F+F+F-X-X+F+F]');
-    this.rulesX.push('F-X+[+F-F-F+X]-[-F+F+F-X-X+F+F]');
-    this.rulesX.push('FF+X+[+F-F-F+X]');
-    this.rulesX.push('F+F+[+F-F-F+X+X]');
-    this.rulesX.push('F+X-[+F-F-F+X+X]');
 
 
     // this.rulesX.push('FF+[+F-F-F]-[-F+F+F]');

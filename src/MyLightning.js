@@ -17,7 +17,7 @@ class MyLightning extends MyLSystem {
     this.staticRuleF = 'FF';
     this.staticRuleX = 'F[-X][X]F[-X]+FX';
     this.staticAngle = 25.0;
-    this.staticIterations = 1;
+    this.staticIterations = 4;
     this.staticScaleFactor = 0.5;
 
     this.staticRulesX = [];
@@ -46,7 +46,7 @@ class MyLightning extends MyLSystem {
     console.log('Depth: ' + this.depth);
     console.log('t: ' + t);
     console.log('Initial time: ' + this.initialTime);
-    this.depth = (t - this.initialTime) / 100;
+    this.depth = (t - this.initialTime);
   }
 
   display() {
@@ -54,7 +54,7 @@ class MyLightning extends MyLSystem {
       this.scene.pushMatrix();
       this.material.apply();
       this.scene.scale(this.scale, this.scale, this.scale);
-      this.scene.translate(1, 30, 1);
+      this.scene.translate(1, 150, 1);
       this.scene.rotate(Math.PI, 0, 0, 1);
 
       let i;
@@ -96,7 +96,7 @@ class MyLightning extends MyLSystem {
             if (primitive && i < this.depth && this.printLightning) {
               primitive.display();
               this.scene.translate(0, 1, 0);
-            } else if (this.depth > 10) {
+            } else if (this.depth >= 600) {
               console.log('oi');
               this.printLightning = false;
             }
