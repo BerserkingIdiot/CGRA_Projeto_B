@@ -19,6 +19,10 @@ class MyScene extends CGFscene {
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
     this.enableTextures(true);
+
+    this.speedFactor = 1;
+    this.scaleFactor = 1;
+
     this.setUpdatePeriod(60);
 
     // Initialize LSystem objects
@@ -31,7 +35,7 @@ class MyScene extends CGFscene {
 
     // Initialize scene objects
     this.axis = new CGFaxis(this);
-    this.plane = new Plane(this, 32);
+    this.terrain = new MyTerrain(this);
     this.bird = new MyBird(this);
     this.lightning = new MyLightning(this);
 
@@ -66,10 +70,60 @@ class MyScene extends CGFscene {
         // do initial generation
         this.doGenerate();
 
-    this.initMatsTextures();
 
     // Objects connected to MyInterface
+
+    // shaders
+    this.selectedShader = 0;
+
+    this.shaderList = {
+      'Texture Only': 0,
+      'Gradient Only': 1,
+      'Final Shader': 2,
+    }
   }
+
+  checkKeys() {
+    let text = 'Keys pressed: ';
+    let keysPressed = false;
+
+    // Check for key codes e.g. in https://keycode.info/
+    if (this.gui.isKeyPressed('KeyW')) {
+      text += ' W ';
+      keysPressed = true;
+      this.bird.accelerate(0.01);
+    }
+
+    if (this.gui.isKeyPressed('KeyS')) {
+      text += ' S ';
+      keysPressed = true;
+      this.bird.accelerate(-0.01);
+    }
+
+    if (this.gui.isKeyPressed('KeyA')) {
+      text += ' A ';
+      keysPressed = true;
+      this.bird.turn(3);
+    }
+
+    if (this.gui.isKeyPressed('KeyD')) {
+      text += ' D ';
+      keysPressed = true;
+      this.bird.turn(-3);
+    }
+
+    if (this.gui.isKeyPressed('KeyR')) {
+      text += ' R ';
+      keysPressed = true;
+      this.bird.reset();
+    }
+
+    if (keysPressed) {
+      console.log(text);
+    }
+  }
+
+
   initLights() {
     this.lights[0].setPosition(15, 2, 5, 1);
     this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -87,26 +141,20 @@ class MyScene extends CGFscene {
     this.setShininess(10.0);
   }
 
-  initMatsTextures() {
-    this.terrainMat = new CGFappearance(this);
-    this.terrainMat.setAmbient(0.3, 0.3, 0.3, 1);
-    this.terrainMat.setDiffuse(0.7, 0.7, 0.7, 1);
-    this.terrainMat.setSpecular(0.0, 0.0, 0.0, 1);
-    this.terrainMat.setShininess(120);
 
-    this.terrainTexture1 = new CGFtexture(this, 'images/terrain.jpg');
-    this.terrainMat.setTexture(this.terrainTexture1);
-    this.terrainMat.setTextureWrap('REPEAT', 'REPEAT');
-    this.terrainTexture2 = new CGFtexture(this, 'images/heightmap.jpg');
-
-    this.terrainShader = new CGFshader(
-        this.gl, 'shaders/planeShader.vert', 'shaders/planeShader.frag');
-    this.terrainShader.setUniformsValues({uSampler2: 1});
-  }
 
   update(t) {
     this.bird.update(t);
-    this.lightning.update(t);
+    // this.lightning.update(t);
+    this.checkKeys();
+  }
+
+  onSpeedFactorChanged() {
+    this.bird.updateSpeedFactor(this.speedFactor);
+  }
+
+  onScaleFactorChanged() {
+    this.bird.updateScaleFactor(this.scaleFactor);
   }
 
   display() {
@@ -127,21 +175,11 @@ class MyScene extends CGFscene {
     // Apply default appearance
     this.setDefaultAppearance();
 
-    this.terrainMat.apply();
-    this.setActiveShader(this.terrainShader);
-
     // ---- BEGIN Primitive drawing section
-    this.pushMatrix();
+    this.terrain.display(this.selectedShader);
 
-    this.terrainTexture2.bind(1);
-
-    this.rotate(-0.5 * Math.PI, 1, 0, 0);
-    this.scale(60, 60, 1);
-    // this.plane.display();
-    this.popMatrix();
-
-    // this.bird.display();
-    this.lightning.startAnimation();
+    this.bird.display();
+    // this.lightning.startAnimation();
 
     // ---- END Primitive drawing section
   }
