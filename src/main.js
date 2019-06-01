@@ -11,6 +11,7 @@ include = function() {
     g.onload = g.onerror = g.onreadystatechange = f,
     (b.head || b.getElementsByTagName('head')[0]).appendChild(g)
 };
+
 serialInclude = function(a) {
   var b = console, c = serialInclude.l;
   if (a.length > 0)
@@ -36,7 +37,7 @@ serialInclude.l = new Array();
 
 serialInclude([
   '../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'Plane.js', 'MyUnitCube.js',
-  'MyBird.js', 'MyDiamond.js', 'MyTerrain.js',
+  'MyBird.js', 'MyDiamond.js', 'MyTerrain.js', 'MyPyramid.js',
 
   main =
       function() {
