@@ -3,7 +3,7 @@ class MyBird extends CGFobject {
     super(scene);
     this.cube = new MyUnitCube(scene);
     this.wing = new MyDiamond(scene);
-    this.beak = new MyPyramid(scene, 5);
+    this.beak = new MyPyramid(scene, 3);
     this.x = 0;
     this.y = 3;
     this.z = 0;
@@ -80,6 +80,8 @@ class MyBird extends CGFobject {
     this.scene.translate(0, 0.7, 0.8);
     this.scene.rotate(Math.PI / 2, 1, 0, 0);
     this.scene.scale(0.2, 0.4, 0.2);
+    this.scene.rotate(Math.PI / 2, 0, 1, 0);
+
     this.beak.display();
     this.scene.popMatrix();
 
