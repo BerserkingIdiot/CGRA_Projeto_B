@@ -30,6 +30,46 @@ class MyScene extends CGFscene {
     this.terrain = new MyTerrain(this);
     this.bird = new MyBird(this);
 
+    this.axiom = 'X';   // "X"; //
+    this.ruleF = 'FF';  // "FF"; //
+    this.ruleX = 'F[-X][X]F[-X]+FX';
+    this.angle = 30.0;
+    this.iterations = 4;
+    this.scaleFactor = 0.5;
+    this.plant = new MyLSPlant(this);
+
+    this.wood = new CGFappearance(this);
+    this.wood.setShininess(10.0);
+    this.wood.setAmbient(0.1, 0.1, 0.1, 1);
+    this.wood.setSpecular(0.1, 0.1, 0.1, 1);
+    this.wood.setDiffuse(0.9, 0.9, 0.9, 1);
+    this.wood.loadTexture('images/wood.jpeg');
+
+    this.materialLeaf = new CGFappearance(this);
+    this.materialLeaf.setAmbient(0.9, 0.9, 0.9, 1);
+    this.materialLeaf.setDiffuse(0.9, 0.9, 0.9, 1);
+    this.materialLeaf.setSpecular(0.9, 0.9, 0.9, 1);
+    this.materialLeaf.setShininess(10.0);
+    this.materialLeaf.loadTexture('images/leaf.jpg');
+
+    this.rulesX = [];
+    this.rulesX.push('F[-X][X]F[-X]+X');
+    this.rulesX.push('F[-X][x]+X');
+    this.rulesX.push('F[+X]-X');
+    this.rulesX.push('F[/X][X]F[\\X]+X');
+    this.rulesX.push('F[\X][X]/X');
+    this.rulesX.push('F[/X]\X');
+    this.rulesX.push('F[^X][X]F[&X]^X');
+    this.rulesX.push('F[^X]&X');
+    this.rulesX.push('F[&X]^X');
+
+    this.doGenerate = () => {
+      this.plant.generate(
+          this.axiom, {'F': [this.ruleF], 'X': this.rulesX}, this.angle,
+          this.iterations, this.scaleFactor);
+    };
+
+    this.doGenerate();
 
     // Objects connected to MyInterface
 
@@ -37,10 +77,10 @@ class MyScene extends CGFscene {
     this.selectedShader = 0;
 
     this.shaderList = {
-        'Texture Only': 0,
-        'Gradient Only': 1,
-        'Final Shader': 2,
-      }
+      'Texture Only': 0,
+      'Gradient Only': 1,
+      'Final Shader': 2,
+    }
   }
 
   checkKeys() {
@@ -101,7 +141,7 @@ class MyScene extends CGFscene {
     this.setShininess(10.0);
   }
 
-  
+
 
   update(t) {
     this.bird.update(t);
@@ -140,6 +180,39 @@ class MyScene extends CGFscene {
     this.terrain.display(this.selectedShader);
 
     this.bird.display();
+
+    this.pushMatrix();
+    this.translate(1, 4, 3);
+    this.scale(1.25, 1.25, 1.25);
+    this.plant.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(1, 4, -13);
+    this.scale(2, 2, 2);
+    this.plant.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(8, 4, 1);
+    this.plant.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(8, 4, 7);
+    this.plant.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(-17, 4, 7);
+    this.plant.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(-8, 4, -7);
+    this.scale(2, 2, 2);
+    this.plant.display();
+    this.popMatrix();
 
     // ---- END Primitive drawing section
   }

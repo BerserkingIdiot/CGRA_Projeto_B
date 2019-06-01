@@ -37,7 +37,8 @@ serialInclude.l = new Array();
 
 serialInclude([
   '../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'Plane.js', 'MyUnitCube.js',
-  'MyBird.js', 'MyDiamond.js', 'MyTerrain.js', 'MyPyramid.js',
+  'MyBird.js', 'MyDiamond.js', 'MyTerrain.js', 'MyPyramid.js', 'MyCylinder.js',
+  'MyTriangle.js', 'MyLeaf.js', 'MyBranch.js', 'MyLSystem.js', 'MyLSPlant.js',
 
   main =
       function() {
