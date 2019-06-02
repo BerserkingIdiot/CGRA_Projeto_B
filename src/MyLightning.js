@@ -46,9 +46,9 @@ class MyLightning extends MyLSystem {
   }
 
   update(t) {
-    console.log('Depth: ' + this.depth);
-    console.log('t: ' + t);
-    console.log('Initial time: ' + this.initialTime);
+    //console.log('Depth: ' + this.depth);
+    //console.log('t: ' + t);
+    //console.log('Initial time: ' + this.initialTime);
     this.depth = (t - this.initialTime);
   }
 
@@ -100,7 +100,7 @@ class MyLightning extends MyLSystem {
               primitive.display();
               this.scene.translate(0, 1, 0);
             } else if (this.depth >= 600) {
-              console.log('oi');
+              //console.log('oi');
               this.printLightning = false;
             }
             break;

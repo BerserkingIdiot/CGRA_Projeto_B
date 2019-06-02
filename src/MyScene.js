@@ -31,6 +31,7 @@ class MyScene extends CGFscene {
     this.terrain = new MyTerrain(this);
     this.bird = new MyBird(this);
     this.lightning = new MyLightning(this);
+    this.nest = new MyNest(this);
 
 
 
@@ -248,6 +249,8 @@ class MyScene extends CGFscene {
     this.scale(2, 2, 2);
     this.plant.display();
     this.popMatrix();
+
+    this.nest.display();
 
     // ---- END Primitive drawing section
   }
