@@ -79,7 +79,21 @@ class MyScene extends CGFscene {
     this.eyeColor.setDiffuse(0.9, 0.9, 0.9, 1);
     this.eyeColor.setSpecular(0.9, 0.9, 0.9, 1);
     this.eyeColor.setShininess(10.0);
-    this.eyeColor.loadTexture('images/black.jpeg');
+    this.eyeColor.loadTexture('images/brown.jpg');
+
+    this.bodyColor = new CGFappearance(this);
+    this.bodyColor.setAmbient(1, 1, 1, 1);
+    this.bodyColor.setDiffuse(1, 1, 1, 1);
+    this.bodyColor.setSpecular(1, 1, 1, 1);
+    this.bodyColor.setShininess(10.0);
+    this.bodyColor.loadTexture('images/blue.jpg');
+
+    this.beakColor = new CGFappearance(this);
+    this.beakColor.setAmbient(1, 1, 1, 1);
+    this.beakColor.setDiffuse(1, 1, 1, 1);
+    this.beakColor.setSpecular(1, 1, 1, 1);
+    this.beakColor.setShininess(10.0);
+    this.beakColor.loadTexture('images/yellow.jpg');
 
     this.rulesX = [];
     this.rulesX.push('F[-X][X]F[-X]+X');

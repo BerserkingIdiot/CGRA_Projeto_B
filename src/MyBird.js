@@ -64,51 +64,53 @@ class MyBird extends CGFobject {
     this.scene.pushMatrix();
     // this.scene.translate(this.x, this.y, this.z);
     this.scene.scale(1, 1, 1);
+    this.scene.bodyColor.apply();
     this.cube.display();
     this.scene.popMatrix();
     //===============================
 
     // Head
     this.scene.pushMatrix();
-    this.scene.translate(0, 0.85, 0.5);
+    this.scene.translate(0, 0.4, 0.2);
     this.scene.scale(0.7, 0.7, 0.7);
     this.cube.display();
     this.scene.popMatrix();
 
     // Beak
     this.scene.pushMatrix();
-    this.scene.translate(0, 0.7, 0.8);
+    this.scene.translate(0, 0.4, 0.4);
     this.scene.rotate(Math.PI / 2, 1, 0, 0);
-    this.scene.scale(0.2, 0.4, 0.2);
+    this.scene.scale(0.05, 0.1, 0.05);
     this.scene.rotate(Math.PI / 2, 0, 1, 0);
-
+    this.scene.beakColor.apply();
     this.beak.display();
     this.scene.popMatrix();
 
     // Eyes
     this.scene.pushMatrix();
     this.scene.eyeColor.apply();
-    this.scene.translate(0.1, 1, 0.65);
-    this.scene.scale(0.2, 0.2, 0.2);
+    this.scene.translate(0.1, 0.45, 0.38);
+    this.scene.scale(0.1, 0.1, 0.1);
     this.cube.display();
     this.scene.popMatrix();
 
     this.scene.pushMatrix();
-    this.scene.translate(-0.1, 1, 0.65);
-    this.scene.scale(0.2, 0.2, 0.2);
+    this.scene.translate(-0.1, 0.45, 0.38);
+    this.scene.scale(0.1, 0.1, 0.1);
     this.cube.display();
     this.scene.popMatrix();
 
-    // Legs
-    this.scene.pushMatrix();
-    this.scene.scale(0.1, 0.3, 0.1);
-    this.scene.translate(-2, -2, 2);
-    this.cube.display();
-    this.scene.popMatrix();
-
+    // Leg 1
     this.scene.pushMatrix();
     this.scene.scale(0.1, 0.3, 0.1);
-    this.scene.translate(2, -2, 2);
+    this.scene.translate(-1.7, -1, 1);
+    this.cube.display();
+    this.scene.popMatrix();
+
+    // Leg 2
+    this.scene.pushMatrix();
+    this.scene.scale(0.1, 0.3, 0.1);
+    this.scene.translate(1.7, -1, 1);
     this.cube.display();
     this.scene.popMatrix();
 
@@ -118,10 +120,11 @@ class MyBird extends CGFobject {
     // this.scene.translate(this.x, this.y, this.z);
     this.scene.translate(-0.65, 0, 0);
     this.scene.rotate(this.wingAngle, 0, 0, 1);
-    this.scene.translate(-0.35, 0, 0);
+    this.scene.translate(0.25, 0, 0);
     this.scene.rotate(-Math.PI / 2, 1, 0, 0);
     this.scene.rotate(-Math.PI / 4, 0, 0, 1);
-    this.scene.scale(0.7, 0.7, 0.7);
+    this.scene.scale(0.2, 0.2, 0.2);
+    this.scene.bodyColor.apply();
     this.wing.display();
     this.scene.popMatrix();
     //=========
@@ -130,10 +133,10 @@ class MyBird extends CGFobject {
     // this.scene.translate(this.x, this.y, this.z);
     this.scene.translate(0.65, 0, 0);
     this.scene.rotate(-this.wingAngle, 0, 0, 1);
-    this.scene.translate(0.35, 0, 0);
+    this.scene.translate(-0.25, 0, 0);
     this.scene.rotate(-Math.PI / 2, 1, 0, 0);
     this.scene.rotate(-Math.PI / 4, 0, 0, 1);
-    this.scene.scale(0.7, 0.7, 0.7);
+    this.scene.scale(0.2, 0.2, 0.2);
     this.wing.display();
     this.scene.popMatrix();
 
