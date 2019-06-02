@@ -56,7 +56,7 @@ serialInclude([
   'MyLightningBranch.js',
   'MyLightning.js',
   'MyNest.js',
-  'MyMovableBranch.js',
+  'MyTreeBranch.js',
 
   main =
       function() {

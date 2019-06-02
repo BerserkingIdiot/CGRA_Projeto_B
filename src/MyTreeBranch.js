@@ -1,4 +1,4 @@
-class MyMovableBranch extends CGFobject {
+class MyTreeBranch extends CGFobject {
     constructor(scene, x, y, z, ang){
         super(scene);
         this.branch = new MyBranch(this.scene);
@@ -9,15 +9,18 @@ class MyMovableBranch extends CGFobject {
         this.isHeld = false;
     }
 
+    updateAngle(ang){
+        this.angle += ang;
+    }
+
     updatePosition(x, y, z){
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.x += x;
+        this.y += y;
+        this.z += z;
     }
 
     checkContact(x, y, z){
         if( x < this.x + 0.5 && x > this.x - 0.5 &&
-            y < this.y + 0.5 && y > this.y - 0.5 &&
             z < this.z + 0.5 && z > this.z - 0.5)
             return true;
         else

@@ -33,9 +33,9 @@ class MyScene extends CGFscene {
     this.lightning = new MyLightning(this);
     this.nest = new MyNest(this);
     this.branches = [
-      new MyMovableBranch(this, -5 , 3.5, 5, Math.PI/3),
-      new MyMovableBranch(this, 5 , 3.5, -5, 0),
-      new MyMovableBranch(this, -5 , 3.5, -5, Math.PI/2),
+      new MyTreeBranch(this, -5 , 3.5, 5, Math.PI/3),
+      new MyTreeBranch(this, 5 , 3.5, -5, 0),
+      new MyTreeBranch(this, -5 , 3.5, -5, Math.PI/2),
     ]
 
 
@@ -157,6 +157,12 @@ class MyScene extends CGFscene {
       text += ' L ';
       keysPressed = true;
       this.lightning.startAnimation(t);
+    }
+
+    if (this.gui.isKeyPressed('KeyP')) {
+      text += ' L ';
+      keysPressed = true;
+      this.bird.initiatePickupAnimation();
     }
 
     if (keysPressed) {

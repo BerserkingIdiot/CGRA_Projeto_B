@@ -4,7 +4,7 @@ class MyNest extends CGFobject {
         this.cylinder = new MyCylinder(this.scene, 6);
         this.baseQuad = new MyQuad(this.scene);
         this.x = 5;
-        this.y = 4;
+        this.y = 3.80;
         this.z = 5;
 
         this.nestMaterial = new CGFappearance(this.scene);
@@ -22,6 +22,14 @@ class MyNest extends CGFobject {
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.scene.scale(0.25, 1, 0.25);
         this.scene.translate(0, -0.5, 0);
+    }
+
+    checkContact(x, y, z){
+        if( x < this.x + 1 && x > this.x - 1 &&
+            z < this.z + 1 && z > this.z - 1)
+            return true;
+        else
+            return false;
     }
 
     display(){
