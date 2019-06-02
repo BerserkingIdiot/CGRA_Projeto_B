@@ -1,7 +1,7 @@
 class MyBird extends CGFobject {
   constructor(scene) {
     super(scene);
-    this.cube = new MyUnitCube(scene);
+    this.cube = new MyUnitCubeQuad(scene);
     this.wing = new MyDiamond(scene);
     this.beak = new MyPyramid(scene, 3);
     this.x = 0;
@@ -84,6 +84,34 @@ class MyBird extends CGFobject {
 
     this.beak.display();
     this.scene.popMatrix();
+
+    // Eyes
+    this.scene.pushMatrix();
+    this.scene.eyeColor.apply();
+    this.scene.translate(0.1, 1, 0.65);
+    this.scene.scale(0.2, 0.2, 0.2);
+    this.cube.display();
+    this.scene.popMatrix();
+
+    this.scene.pushMatrix();
+    this.scene.translate(-0.1, 1, 0.65);
+    this.scene.scale(0.2, 0.2, 0.2);
+    this.cube.display();
+    this.scene.popMatrix();
+
+    // Legs
+    this.scene.pushMatrix();
+    this.scene.scale(0.1, 0.3, 0.1);
+    this.scene.translate(-2, -2, 2);
+    this.cube.display();
+    this.scene.popMatrix();
+
+    this.scene.pushMatrix();
+    this.scene.scale(0.1, 0.3, 0.1);
+    this.scene.translate(2, -2, 2);
+    this.cube.display();
+    this.scene.popMatrix();
+
 
     // Wing 1
     this.scene.pushMatrix();

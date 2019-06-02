@@ -52,6 +52,13 @@ class MyScene extends CGFscene {
     this.materialLeaf.setShininess(10.0);
     this.materialLeaf.loadTexture('images/leaf.jpg');
 
+    this.eyeColor = new CGFappearance(this);
+    this.eyeColor.setAmbient(0.9, 0.9, 0.9, 1);
+    this.eyeColor.setDiffuse(0.9, 0.9, 0.9, 1);
+    this.eyeColor.setSpecular(0.9, 0.9, 0.9, 1);
+    this.eyeColor.setShininess(10.0);
+    this.eyeColor.loadTexture('images/black.jpeg');
+
     this.rulesX = [];
     this.rulesX.push('F[-X][X]F[-X]+X');
     this.rulesX.push('F[-X][x]+X');
