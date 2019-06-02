@@ -29,7 +29,10 @@ class MyLightning extends MyLSystem {
   }
 
   initGrammar() {
-    this.grammar = {X: new MyBranch(this.scene), F: new MyBranch(this.scene)};
+    this.grammar = {
+      X: new MyLightningBranch(this.scene),
+      F: new MyLightningBranch(this.scene)
+    };
   }
 
   startAnimation(t) {

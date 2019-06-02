@@ -1,4 +1,4 @@
-class MyBranch extends CGFobject {
+class MyLightningBranch extends CGFobject {
   constructor(scene) {
     super(scene);
     this.branch = new MyQuad(scene);
