@@ -194,7 +194,7 @@ class MyBird extends CGFobject {
     // Wing 1
     this.scene.pushMatrix();
     // this.scene.translate(this.x, this.y, this.z);
-    this.scene.translate(-0.65, 0, 0);
+    this.scene.translate(0.15, 0, 0);
     this.scene.rotate(this.wingAngle, 0, 0, 1);
     this.scene.translate(0.25, 0, 0);
     this.scene.rotate(-Math.PI / 2, 1, 0, 0);
@@ -207,7 +207,7 @@ class MyBird extends CGFobject {
     // Wing 2
     this.scene.pushMatrix();
     // this.scene.translate(this.x, this.y, this.z);
-    this.scene.translate(0.65, 0, 0);
+    this.scene.translate(-0.15, 0, 0);
     this.scene.rotate(-this.wingAngle, 0, 0, 1);
     this.scene.translate(-0.25, 0, 0);
     this.scene.rotate(-Math.PI / 2, 1, 0, 0);

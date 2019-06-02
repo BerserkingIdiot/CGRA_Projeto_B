@@ -37,6 +37,8 @@ class MyScene extends CGFscene {
       new MyTreeBranch(this, 5 , 3.5, -5, 0),
       new MyTreeBranch(this, -5 , 3.5, -5, Math.PI/2),
     ]
+    this.skybox = new MySkybox(this);
+    this.house = new MyHouse(this);
 
 
 
@@ -280,6 +282,9 @@ class MyScene extends CGFscene {
     this.branches[0].display();
     this.branches[1].display();
     this.branches[2].display();
+
+    this.skybox.display();
+    this.house.display();
 
     // ---- END Primitive drawing section
   }

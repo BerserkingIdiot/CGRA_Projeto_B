@@ -57,6 +57,11 @@ serialInclude([
   'MyLightning.js',
   'MyNest.js',
   'MyTreeBranch.js',
+  'MyCubeMap.js',
+  'MySkybox.js',
+  'MyHouse.js',
+  'MyPrism.js',
+  
 
   main =
       function() {
