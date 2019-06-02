@@ -20,8 +20,8 @@ class MyScene extends CGFscene {
     this.gl.depthFunc(this.gl.LEQUAL);
     this.enableTextures(true);
 
-    this.speedFactor = 1;
-    this.scaleFactor = 1;
+    this.birdSpeedFactor = 1;
+    this.birdScaleFactor = 1;
 
     this.setUpdatePeriod(60);
 
@@ -103,7 +103,7 @@ class MyScene extends CGFscene {
     // Objects connected to MyInterface
 
     // shaders
-    this.selectedShader = 0;
+    this.selectedShader = 2;
 
     this.shaderList = {
       'Texture Only': 0,
@@ -185,11 +185,11 @@ class MyScene extends CGFscene {
   }
 
   onSpeedFactorChanged() {
-    this.bird.updateSpeedFactor(this.speedFactor);
+    this.bird.updateSpeedFactor(this.birdSpeedFactor);
   }
 
   onScaleFactorChanged() {
-    this.bird.updateScaleFactor(this.scaleFactor);
+    this.bird.updateScaleFactor(this.birdScaleFactor);
   }
 
   display() {

@@ -43,9 +43,9 @@ class MyInterface extends CGFinterface {
 
     this.gui.add(this.scene, 'selectedShader', this.scene.shaderList);
 
-    this.gui.add(this.scene, 'speedFactor', 0.1, 3)
+    this.gui.add(this.scene, 'birdSpeedFactor', 0.1, 3).name("Speed Factor")
         .onChange(this.scene.onSpeedFactorChanged.bind(this.scene));
-    this.gui.add(this.scene, 'scaleFactor', 0.5, 3)
+    this.gui.add(this.scene, 'birdScaleFactor', 0.5, 3).name("Scale Factor")
         .onChange(this.scene.onScaleFactorChanged.bind(this.scene));
 
     var obj = this;
