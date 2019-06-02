@@ -20,8 +20,8 @@ class MyScene extends CGFscene {
     this.gl.depthFunc(this.gl.LEQUAL);
     this.enableTextures(true);
 
-    this.speedFactor = 1;
-    this.scaleFactor = 1;
+    this.birdSpeedFactor = 1;
+    this.birdScaleFactor = 1;
 
     this.setUpdatePeriod(60);
 
@@ -31,6 +31,12 @@ class MyScene extends CGFscene {
     this.terrain = new MyTerrain(this);
     this.bird = new MyBird(this);
     this.lightning = new MyLightning(this);
+    this.nest = new MyNest(this);
+    this.branches = [
+      new MyTreeBranch(this, -5 , 3.5, 5, Math.PI/3),
+      new MyTreeBranch(this, 5 , 3.5, -5, 0),
+      new MyTreeBranch(this, -5 , 3.5, -5, Math.PI/2),
+    ]
 
 
 
@@ -117,7 +123,7 @@ class MyScene extends CGFscene {
     // Objects connected to MyInterface
 
     // shaders
-    this.selectedShader = 0;
+    this.selectedShader = 2;
 
     this.shaderList = {
       'Texture Only': 0,
@@ -167,6 +173,12 @@ class MyScene extends CGFscene {
       this.lightning.startAnimation(t);
     }
 
+    if (this.gui.isKeyPressed('KeyP')) {
+      text += ' L ';
+      keysPressed = true;
+      this.bird.initiatePickupAnimation();
+    }
+
     if (keysPressed) {
       console.log(text);
     }
@@ -199,11 +211,11 @@ class MyScene extends CGFscene {
   }
 
   onSpeedFactorChanged() {
-    this.bird.updateSpeedFactor(this.speedFactor);
+    this.bird.updateSpeedFactor(this.birdSpeedFactor);
   }
 
   onScaleFactorChanged() {
-    this.bird.updateScaleFactor(this.scaleFactor);
+    this.bird.updateScaleFactor(this.birdScaleFactor);
   }
 
   display() {
@@ -262,6 +274,12 @@ class MyScene extends CGFscene {
     this.scale(2, 2, 2);
     this.plant.display();
     this.popMatrix();
+
+    this.nest.display();
+
+    this.branches[0].display();
+    this.branches[1].display();
+    this.branches[2].display();
 
     // ---- END Primitive drawing section
   }
