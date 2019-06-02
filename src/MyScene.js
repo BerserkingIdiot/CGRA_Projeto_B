@@ -32,6 +32,11 @@ class MyScene extends CGFscene {
     this.bird = new MyBird(this);
     this.lightning = new MyLightning(this);
     this.nest = new MyNest(this);
+    this.branches = [
+      new MyMovableBranch(this, -5 , 3.5, 5, Math.PI/3),
+      new MyMovableBranch(this, 5 , 3.5, -5, 0),
+      new MyMovableBranch(this, -5 , 3.5, -5, Math.PI/2),
+    ]
 
 
 
@@ -251,6 +256,10 @@ class MyScene extends CGFscene {
     this.popMatrix();
 
     this.nest.display();
+
+    this.branches[0].display();
+    this.branches[1].display();
+    this.branches[2].display();
 
     // ---- END Primitive drawing section
   }
