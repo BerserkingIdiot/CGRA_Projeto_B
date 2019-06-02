@@ -15,12 +15,7 @@ class MyLSystem extends CGFobject {
   }
 
   // cria o lexico da gramática
-  initGrammar() {
-    this.grammar = {
-      'F': new MyBranch(this.scene),
-      'X': new MyBranch(this.scene)
-    };
-  }
+  initGrammar() {}
 
 
   // gera o sistema L com os par�metros atuais da cena
@@ -48,7 +43,6 @@ class MyLSystem extends CGFobject {
   // determinado número de iterações
   iterate() {
     var i, j;
-    console.log(this.axiom.length);
     for (i = 0; i < this.iterations; ++i) {
       var newString = '';
 

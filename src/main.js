@@ -11,6 +11,7 @@ include = function() {
     g.onload = g.onerror = g.onreadystatechange = f,
     (b.head || b.getElementsByTagName('head')[0]).appendChild(g)
 };
+
 serialInclude = function(a) {
   var b = console, c = serialInclude.l;
   if (a.length > 0)
@@ -35,9 +36,25 @@ serialInclude = function(a) {
 serialInclude.l = new Array();
 
 serialInclude([
-  '../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'Plane.js', 'MyUnitCube.js',
-  'MyBird.js', 'MyDiamond.js', 'MyLSystem.js', 'MyLightningBranch.js',
-  'MyBranch.js', 'MyQuad.js', 'MyLightning.js', 'MyTerrain.js',
+  '../lib/CGF.js',
+  'MyScene.js',
+  'MyInterface.js',
+  'Plane.js',
+  'MyUnitCube.js',
+  'MyBird.js',
+  'MyDiamond.js',
+  'MyTerrain.js',
+  'MyPyramid.js',
+  'MyCylinder.js',
+  'MyTriangle.js',
+  'MyLeaf.js',
+  'MyBranch.js',
+  'MyLSystem.js',
+  'MyLSPlant.js',
+  'MyQuad.js',
+  'MyUnitCubeQuad.js',
+  'MyLightningBranch.js',
+  'MyLightning.js',
 
   main =
       function() {
